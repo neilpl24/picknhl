@@ -21,7 +21,7 @@ async function displaySchedule() {
     if(!(window.location.href.includes('login.html') || window.location.href.includes('signup.html'))) {
         const result = await axios({
             method: 'post',
-            url: `https://neilpickem.loca.lt:5000/getpicks`,
+            url: `https://neilpickem.loca.lt/getpicks`,
             data: {
                 body: webUser,
             }
@@ -98,7 +98,7 @@ function displayPicks(id, home, away) {
 async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt:5000/decide`,
+        url: `https://neilpickem.loca.lt/decide`,
         data: {
             body: winners,
         }
@@ -118,7 +118,7 @@ async function sendPicks() {
     } else {
         const result = await axios({
             method: 'post',
-            url: `https://neilpickem.loca.lt:5000/pick`,
+            url: `https://neilpickem.loca.lt/pick`,
             data: {
                 body: {name: webUser, pick: team},
             }
@@ -132,7 +132,7 @@ async function login() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt:5000/login`,
+        url: `https://neilpickem.loca.lt/login`,
         data: {
             body: userPass,
         }
@@ -156,7 +156,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt:5000/signup`,
+        url: `https://neilpickem.loca.lt/signup`,
         data: {
             body: userPass,
         }
