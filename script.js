@@ -18,13 +18,15 @@ async function displaySchedule() {
         const liveGame = await res.json();
         liveFeed.push(liveGame);
     }
-    const result = await axios({
-        method: 'post',
-        url: `http://localhost:5000/getpicks`,
-        data: {
-            body: webUser,
-        }
-    });
+    if(webUser != null) {
+        const result = await axios({
+            method: 'post',
+            url: `http://localhost:5000/getpicks`,
+            data: {
+                body: webUser,
+            }
+        });
+    }
     const picks = result.data.picks;
     const gameFeed = $('.gameFeed');
     gameFeed.children().remove();
@@ -152,7 +154,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `http://localhost:5000/signup`,
+        url: `http://0.0.0.0:5000/signup`,
         data: {
             body: userPass,
         }
