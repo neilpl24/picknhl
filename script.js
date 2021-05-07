@@ -162,8 +162,8 @@ async function signup() {
     }
 }
 if(loggedIn != true) {
-    sessionStorage.setItem('temp');
     if(loggedIn == null) {
+        sessionStorage.setItem('temp');
         displaySchedule();
     }
 }
