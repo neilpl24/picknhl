@@ -4,7 +4,7 @@ let loggedIn = sessionStorage.getItem("loggedIn");
 let webUser = sessionStorage.getItem('username');
 async function displaySchedule() {
     if(loggedIn == null) {
-        sessionStorage.setItem('loggedIn', temp);
+        sessionStorage.setItem('loggedIn', 'temp');
         window.location.href = "login.html";
     }
     liveFeed = [];
