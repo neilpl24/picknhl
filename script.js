@@ -3,8 +3,7 @@ let liveFeed = [];
 let loggedIn = sessionStorage.getItem("loggedIn");
 let webUser = sessionStorage.getItem('username');
 async function displaySchedule() {
-    if(loggedIn == null) {
-        sessionStorage.setItem('loggedIn', 'temp');
+    if(loggedIn == null && !window.location.href.includes('login.html')) {
         window.location.href = "login.html";
     }
     liveFeed = [];
