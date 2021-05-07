@@ -154,7 +154,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `http://0.0.0.0:5000/signup`,
+        url: `http://localhost:5000/signup`,
         data: {
             body: userPass,
         }
