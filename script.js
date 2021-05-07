@@ -32,7 +32,7 @@ async function displaySchedule() {
     const wins = result.data.wins;
     const losses = result.data.losses;
     if(sessionStorage.getItem('nav') == null) {
-        $('#nav').append($(`<li class="nav-item"><a style="color:white;"class="nav-link">Welcome ${webuser}. Your record is ${wins} wins and ${losses} losses.</a></li>`));
+        $('#nav').append($(`<li class="nav-item"><a style="color:white;"class="nav-link">Welcome ${webUser}. Your record is ${wins} wins and ${losses} losses.</a></li>`));
         sessionStorage.setItem('nav', 'random');
     }
         liveFeed.forEach((game) => {
