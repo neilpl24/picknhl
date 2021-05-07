@@ -96,7 +96,7 @@ async function updateProfiles(winners) {
 }
 
 function logout() {
-    sessionStorage.getItem(null);
+    sessionStorage.setItem(null);
     window.location.href = 'login.html';
 }
 
@@ -161,6 +161,7 @@ async function signup() {
         $('signer').append(`<p>There is already an account under this username.</p>`);
     }
 }
+console.log(window.location.href);
 if(window.location.href.includes('index.html')|| window.location.href == 'http://localhost:3000/') {
     displaySchedule();
 }
