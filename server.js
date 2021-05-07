@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
 
-app.listen(5000, () => {
+app.listen(5000, '0.0.0.0', () => {
     try {
         mongoose.connect(process.env.SRV, {
             useNewUrlParser: true,
