@@ -161,6 +161,9 @@ async function signup() {
         $('signer').append(`<p>There is already an account under this username.</p>`);
     }
 }
-if(loggedIn == null) {
-    displaySchedule();
+if(loggedIn != true) {
+    sessionStorage.setItem('temp');
+    if(loggedIn == null) {
+        displaySchedule();
+    }
 }
