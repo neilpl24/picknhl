@@ -5,7 +5,7 @@ let webUser = sessionStorage.getItem('username');
 async function displaySchedule() {
     if(loggedIn == null) {
         window.location.href = "login.html"
-        sessionStorage.setItem('temp');
+        sessionStorage.setItem('loggedIn', temp);
     }
     liveFeed = [];
     const scheduleUrl = "https://statsapi.web.nhl.com/api/v1/schedule";
