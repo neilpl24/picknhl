@@ -26,6 +26,7 @@ async function displaySchedule() {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 },
+            mode: 'no-cors',
             data: {
                 body: webUser,
             }
@@ -107,6 +108,7 @@ async function updateProfiles(winners) {
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             },
+        mode: 'no-cors',
         data: {
             body: winners,
         }
@@ -131,6 +133,7 @@ async function sendPicks() {
                 'Access-Control-Allow-Origin' : '*',
                 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 },
+            mode: 'no-cors',
             data: {
                 body: {name: webUser, pick: team},
             }
@@ -149,6 +152,7 @@ async function login() {
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             },
+        mode: 'no-cors',
         data: {
             body: userPass,
         }
@@ -177,6 +181,7 @@ async function signup() {
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             },
+        mode: 'no-cors',
         data: {
             body: userPass,
         }
