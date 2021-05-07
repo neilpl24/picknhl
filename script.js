@@ -4,8 +4,8 @@ let loggedIn = sessionStorage.getItem("loggedIn");
 let webUser = sessionStorage.getItem('username');
 async function displaySchedule() {
     if(loggedIn == null) {
-        window.location.href = "login.html"
         sessionStorage.setItem('loggedIn', temp);
+        window.location.href = "login.html";
     }
     liveFeed = [];
     const scheduleUrl = "https://statsapi.web.nhl.com/api/v1/schedule";
