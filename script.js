@@ -2,6 +2,7 @@
 let liveFeed = [];
 let loggedIn = sessionStorage.getItem("loggedIn");
 let webUser = sessionStorage.getItem('username');
+let navDisplayed = sessionStorage.getItem('nav');
 async function displaySchedule() {
     if(loggedIn == null && !window.location.href.includes('login.html')) {
         window.location.href = "login.html";
@@ -28,7 +29,13 @@ async function displaySchedule() {
     const gameFeed = $('.gameFeed');
     gameFeed.children().remove();
     let finished = true;
-    liveFeed.forEach((game) => {
+    const wins = result.data.wins;
+    const losses = result.data.losses;
+    if(sessionStorage.getItem('nav') == null) {
+        $('#nav').append($(`<li class="nav-item"><a style="color:white;"class="nav-link">Welcome ${webuser}. Your record is ${wins} wins and ${losses} losses.</a></li>`));
+        sessionStorage.setItem('nav', 'random');
+    }
+        liveFeed.forEach((game) => {
         if(game.gameData.status.abstractGameState != "Final") {
             finished = false;
         }
