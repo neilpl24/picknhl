@@ -21,12 +21,7 @@ async function displaySchedule() {
     if(!(window.location.href.includes('login.html') || window.location.href.includes('signup.html'))) {
         const result = await axios({
             method: 'post',
-            url: `https://neilpickem.loca.lt/getpicks`,
-            headers: {
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                },
-            mode: 'no-cors',
+            url: `https://fast-reef-42613.herokuapp.com/http://localhost:5000/getpicks`,
             data: {
                 body: webUser,
             }
@@ -103,12 +98,7 @@ function displayPicks(id, home, away) {
 async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt/decide`,
-        headers: {
-            'Access-Control-Allow-Origin' : '*',
-            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            },
-        mode: 'no-cors',
+        url: `https://fast-reef-42613.herokuapp.com/http://localhost:5000/decide`,
         data: {
             body: winners,
         }
@@ -128,12 +118,7 @@ async function sendPicks() {
     } else {
         const result = await axios({
             method: 'post',
-            url: `https://neilpickem.loca.lt/pick`,
-            headers: {
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                },
-            mode: 'no-cors',
+            url: `https://fast-reef-42613.herokuapp.com/http://localhost:5000/pick`,
             data: {
                 body: {name: webUser, pick: team},
             }
@@ -147,12 +132,7 @@ async function login() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt/login`,
-        headers: {
-            'Access-Control-Allow-Origin' : '*',
-            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            },
-        mode: 'no-cors',
+        url: `https://fast-reef-42613.herokuapp.com/http://localhost:5000/login`,
         data: {
             body: userPass,
         }
@@ -176,12 +156,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt/signup`,
-        headers: {
-            'Access-Control-Allow-Origin' : '*',
-            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            },
-        mode: 'no-cors',
+        url: `https://fast-reef-42613.herokuapp.com/http://localhost:5000/signup`,
         data: {
             body: userPass,
         }
