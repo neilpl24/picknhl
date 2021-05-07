@@ -25,7 +25,6 @@ async function displaySchedule() {
         }
     });
     const picks = result.data.picks;
-    console.log(picks);
     const gameFeed = $('.gameFeed');
     gameFeed.children().remove();
     let finished = true;
