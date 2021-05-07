@@ -22,6 +22,10 @@ async function displaySchedule() {
         const result = await axios({
             method: 'post',
             url: `https://neilpickem.loca.lt/getpicks`,
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                },
             data: {
                 body: webUser,
             }
@@ -99,6 +103,10 @@ async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
         url: `https://neilpickem.loca.lt/decide`,
+        headers: {
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            },
         data: {
             body: winners,
         }
@@ -119,6 +127,10 @@ async function sendPicks() {
         const result = await axios({
             method: 'post',
             url: `https://neilpickem.loca.lt/pick`,
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                },
             data: {
                 body: {name: webUser, pick: team},
             }
@@ -133,6 +145,10 @@ async function login() {
     const result = await axios({
         method: 'post',
         url: `https://neilpickem.loca.lt/login`,
+        headers: {
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            },
         data: {
             body: userPass,
         }
@@ -157,6 +173,10 @@ async function signup() {
     const result = await axios({
         method: 'post',
         url: `https://neilpickem.loca.lt/signup`,
+        headers: {
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            },
         data: {
             body: userPass,
         }
