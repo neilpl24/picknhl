@@ -1,5 +1,4 @@
 
-
 let liveFeed = [];
 let loggedIn = sessionStorage.getItem("loggedIn");
 let webUser = sessionStorage.getItem('username');
@@ -25,10 +24,14 @@ async function displaySchedule() {
             body: webUser,
         }
     });
-    const picks = result.data;
+    const picks = result.data.picks;
     const gameFeed = $('.gameFeed');
     gameFeed.children().remove();
+    let finished = true;
     liveFeed.forEach((game) => {
+        if(game.gameData.status.abstractGameState != "Final") {
+            finished = false;
+        }
         const awayTeam = game.gameData.teams.away.name;
         const homeTeam = game.gameData.teams.home.name;
         const awayScore = game.liveData.linescore.teams.away.goals;
@@ -52,6 +55,16 @@ async function displaySchedule() {
         displayDiv.append(cardDiv);
         gameFeed.append(displayDiv);
     });
+        if(finished && picks.length != 0) {
+            let winners = liveFeed.map(game => {
+                const awayTeam = game.gameData.teams.away.name;
+                const homeTeam = game.gameData.teams.home.name;
+                const awayScore = game.liveData.linescore.teams.away.goals;
+                const homeScore = game.liveData.linescore.teams.home.goals;
+                return homeScore > awayScore ? homeTeam : awayTeam;
+            });
+            updateProfiles(winners);
+        }
 }
 
 function displayPicks(id, home, away) {
@@ -69,6 +82,22 @@ function displayPicks(id, home, away) {
     container.append(`<a href="index.html" class="btn btn-danger">Cancel</a>`);
     container.append(`<p>Pick carefully! All decisions are final :)</p>`);
     button.replaceWith(container);
+}
+
+async function updateProfiles(winners) {
+    const result = await axios({
+        method: 'post',
+        url: `http://localhost:5000/decide`,
+        data: {
+            body: winners,
+        }
+    });
+    displaySchedule();
+}
+
+function logout() {
+    sessionStorage.getItem(null);
+    window.location.href = 'login.html';
 }
 
 async function sendPicks() {

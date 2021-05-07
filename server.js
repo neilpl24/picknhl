@@ -1,6 +1,6 @@
 require('dotenv').config();
 let bodyParser = require('body-parser')
-var cors = require('cors');
+let cors = require('cors');
 const profileModel = require("./profileSchema")
 const Express = require("express");
 let app = Express();
@@ -36,7 +36,7 @@ app.listen(5000, () => {
 
     app.post('/getpicks', async(request, response) => {
         let profileData = await profileModel.findOne({username: request.body.body});
-        response.send(profileData.picks);
+        response.send({picks: profileData.picks, wins: profileData.wins, losses: profileData.losses});
     });
 
     app.post('/signup', async (request, response) => {
@@ -67,22 +67,24 @@ app.listen(5000, () => {
     })
 
     app.post('/decide', async(request, response) => {
-        let profileData = await profileModel.findOne({username: request.body.name});
-        const picks = profileData.picks;
-        const winsArray = profileData.picks.filter(game => request.body.wins.includes(game.id));
-        const wins = winsArray.length;
-        const loss = picks.length - wins;
-        const updateProfile = await profileModel.findOneAndUpdate({
-            username: request.body.name,
-        },
-        {
-            $inc: {
-                losses: loss,
-                wins: wins,
+        let profiles = await profileModel.find();
+        for(let i=0; i<profiles.length; i++) {
+            const picks = profile[i].picks;
+            const winsArray = profile[i].picks.filter(game => request.body.body.winners.includes(game));
+            const wins = winsArray.length;
+            const loss = picks.length - wins;
+            await profileModel.findOneAndUpdate({
+                username: profile[i].username,
             },
-            $set: {
-                picks: [],
+            {
+                $inc: {
+                    losses: loss,
+                    wins: wins,
+                },
+                $set: {
+                    picks: [],
+                }
+            });
             }
+            response.send('Done');
         });
-        response.send(updateProfile);
-    });

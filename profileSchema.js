@@ -4,8 +4,7 @@ const profileSchema = new mongoose.Schema({
     password: {type: String},
     wins: {type: Number, default: 0},
     losses: {type: Number, default: 0},
-    picks: {type: [], default: []},
-    loggedIn: {type: Boolean, default: false}
+    picks: {type: [], default: []}
 });
 
 const model = mongoose.model('ProfileModels', profileSchema);
