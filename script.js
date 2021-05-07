@@ -5,6 +5,7 @@ let webUser = sessionStorage.getItem('username');
 async function displaySchedule() {
     if(loggedIn == null) {
         window.location.href = "login.html"
+        sessionStorage.setItem('temp');
     }
     liveFeed = [];
     const scheduleUrl = "https://statsapi.web.nhl.com/api/v1/schedule";
@@ -161,9 +162,5 @@ async function signup() {
         $('signer').append(`<p>There is already an account under this username.</p>`);
     }
 }
-if(loggedIn != true) {
-    if(loggedIn == null) {
-        sessionStorage.setItem('temp');
-        displaySchedule();
-    }
-}
+
+displaySchedule();
