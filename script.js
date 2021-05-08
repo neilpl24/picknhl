@@ -130,7 +130,7 @@ async function login() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
     const userPass = {name: username, pass: password};
-    const result = await axios({
+     const result = await axios({
         method: 'post',
         url: `https://fast-reef-42613.herokuapp.com/http://localhost:5000/login`,
         data: {
