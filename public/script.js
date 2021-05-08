@@ -27,7 +27,7 @@ async function displaySchedule() {
             }
         });
         const picks = result.data.picks;
-        const gameFeed = $('.card-group');
+        const gameFeed = $('.gameFeed');
         gameFeed.children().remove();
         let finished = true;
         const wins = result.data.wins;
