@@ -20,7 +20,7 @@ async function displaySchedule() {
     if(!(window.location.href.includes('login.html') || window.location.href.includes('signup.html'))) {
         const result = await axios({
             method: 'post',
-            url: `http://localhost:${process.env.PORT}/getpicks`,
+            url: `/getpicks`,
             credentials: 'include',
             data: {
                 body: webUser,
@@ -98,7 +98,7 @@ function displayPicks(id, home, away) {
 async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
-        url: `http://localhost:${process.env.PORT}/decide`,
+        url: `/decide`,
         credentials: 'include',
         data: {
             body: winners,
@@ -119,7 +119,7 @@ async function sendPicks() {
     } else {
         const result = await axios({
             method: 'post',
-            url: `http://localhost:${process.env.PORT}/pick`,
+            url: `/pick`,
             credentials: 'include',
             data: {
                 body: {name: webUser, pick: team},
@@ -134,7 +134,7 @@ async function login() {
     const userPass = {name: username, pass: password};
      const result = await axios({
         method: 'post',
-        url: `http://localhost:${process.env.PORT}/login`,
+        url: `/login`,
         data: {
             body: userPass,
         }
@@ -158,7 +158,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     try {const result = await axios({
         method: 'post',
-        url: `http://localhost:${process.env.PORT}/signup`,
+        url: `/signup`,
         credentials: 'include',
         data: {
             body: userPass,
