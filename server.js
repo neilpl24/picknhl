@@ -6,7 +6,8 @@ let app = Express();
 let cors = require('cors');
 app.use(
     cors({
-      origin: 'https://neilpickem.netlify.app'
+      origin: ['https://neilpickem.loca.lt','https://neilpickem.netlify.app'],
+      credentials: true,
     })
   );
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,7 +29,7 @@ app.get('/', (req, res) => {
     }
     next();
   });
-app.listen(4000, '0.0.0.0', () => {
+app.listen(80, '0.0.0.0', () => {
     try {
         mongoose.connect(process.env.SRV, {
             useNewUrlParser: true,
