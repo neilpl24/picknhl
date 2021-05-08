@@ -132,13 +132,14 @@ async function login() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
     const userPass = {name: username, pass: password};
-     const result = await axios({
+     const result = await fetch({
         method: 'post',
         url: `https://neilpickem.loca.lt/login`,
         data: {
             body: userPass,
         }
     });
+    result = await result.json();
     if(result.data === true) {
         $('#logger').append(`<p>Login successful. Redirecting you to the main site...</p>`);
         sessionStorage.setItem('loggedIn', true);
