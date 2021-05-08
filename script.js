@@ -20,7 +20,7 @@ async function displaySchedule() {
     if(!(window.location.href.includes('login.html') || window.location.href.includes('signup.html'))) {
         const result = await axios({
             method: 'post',
-            url: `https://neilpickem.loca.lt/getpicks`,
+            url: `localhost:4000/getpicks`,
             credentials: 'include',
             data: {
                 body: webUser,
@@ -98,7 +98,7 @@ function displayPicks(id, home, away) {
 async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt/decide`,
+        url: `localhost:4000/decide`,
         credentials: 'include',
         data: {
             body: winners,
@@ -119,7 +119,7 @@ async function sendPicks() {
     } else {
         const result = await axios({
             method: 'post',
-            url: `https://neilpickem.loca.lt/pick`,
+            url: `localhost:4000/pick`,
             credentials: 'include',
             data: {
                 body: {name: webUser, pick: team},
@@ -132,13 +132,13 @@ async function login() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
     const userPass = {name: username, pass: password};
-     const result = await fetch('https://neilpickem.loca.lt/login',{
+     const result = await axios({
         method: 'post',
+        url: `localhost:4000/login`,
         data: {
             body: userPass,
         }
     });
-    result = await result.json();
     if(result.data === true) {
         $('#logger').append(`<p>Login successful. Redirecting you to the main site...</p>`);
         sessionStorage.setItem('loggedIn', true);
@@ -158,7 +158,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     try {const result = await axios({
         method: 'post',
-        url: `https://neilpickem.loca.lt/signup`,
+        url: `localhost:4000/signup`,
         credentials: 'include',
         data: {
             body: userPass,
