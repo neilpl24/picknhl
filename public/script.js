@@ -45,7 +45,7 @@ async function displaySchedule() {
             const displayDiv = $(`<div class="card text-white bg-secondary mb-3" style="width:18rem;min-height:139px;display:inline-block;float:left;"></div>`);
             displayDiv.append($(`<div class="card-header">
             ︎ </div>`));
-            displayDiv.append($(`<img src="/logos/${homeTeam}1.png" class="card-img-top" width="30px" alt="NHL"><img src="/logos/${awayTeam}1.png" class="card-img-top" width="30px" alt="NHL">`));
+            displayDiv.append($(`<img src="/logos/${homeTeam}1.png" class="card-img-top" width="15px" alt="NHL"><img src="/logos/${awayTeam}1.png" class="card-img-top" width="15px" alt="NHL">`));
             const cardDiv = $(`<div class="card-body">`);
             const display = $(`<p class="card-text"><img src="/logos/${awayTeam}.png" width="20px" alt="NHL">${awayTeam}: ${awayScore} <br> <img src="/logos/${homeTeam}.png" width="20px" alt="NHL">${homeTeam}: ${homeScore}</p>`);
             cardDiv.append(display);
