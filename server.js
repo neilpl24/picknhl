@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-app.listen(80, () => {
+app.listen(4000, () => {
     try {
         mongoose.connect(process.env.SRV, {
             useNewUrlParser: true,
