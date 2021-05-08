@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     }
     next();
   });
-app.listen(80, '0.0.0.0', () => {
+app.listen(4000, '0.0.0.0', () => {
     try {
         mongoose.connect(process.env.SRV, {
             useNewUrlParser: true,

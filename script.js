@@ -136,6 +136,7 @@ async function login() {
         method: 'post',
         url: `https://neilpickem.loca.lt/login`,
         credentials: 'include',
+        mode: "no-cors",
         data: {
             body: userPass,
         }
