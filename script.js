@@ -21,6 +21,7 @@ async function displaySchedule() {
         const result = await axios({
             method: 'post',
             url: `http://localhost:4000/getpicks`,
+            credentials: 'include',
             data: {
                 body: webUser,
             }
@@ -98,6 +99,7 @@ async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
         url: `http://localhost:4000/decide`,
+        credentials: 'include',
         data: {
             body: winners,
         }
@@ -118,6 +120,7 @@ async function sendPicks() {
         const result = await axios({
             method: 'post',
             url: `http://localhost:4000/pick`,
+            credentials: 'include',
             data: {
                 body: {name: webUser, pick: team},
             }
@@ -132,6 +135,7 @@ async function login() {
      const result = await axios({
         method: 'post',
         url: `http://localhost:4000/login`,
+        credentials: 'include',
         data: {
             body: userPass,
         }
@@ -156,6 +160,7 @@ async function signup() {
     try {const result = await axios({
         method: 'post',
         url: `http://localhost:4000/signup`,
+        credentials: 'include',
         data: {
             body: userPass,
         }

@@ -3,22 +3,32 @@ let bodyParser = require('body-parser')
 const profileModel = require("./profileSchema")
 const Express = require("express");
 let app = Express();
-let cors = require('cors')
+let cors = require('cors');
+app.use(
+    cors({
+      origin: 'https://neilpickem.netlify.app'
+    })
+  );
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
-app.use(cors()); 
 app.get('/', (req, res) => {
     res.send('Hello World!');
   });
-  app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", 'https://neilpickem.netlify.app');
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+    res.header("Access-Control-Allow-Credentials", true);
+    if (req.method === "OPTIONS") {
+      return res.sendStatus(204);
+    }
     next();
-});
-app.listen(4000, () => {
+  });
+app.listen(4000, '0.0.0.0', () => {
     try {
         mongoose.connect(process.env.SRV, {
             useNewUrlParser: true,
