@@ -132,9 +132,8 @@ async function login() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
     const userPass = {name: username, pass: password};
-     const result = await fetch({
+     const result = await fetch('https://neilpickem.loca.lt/login',{
         method: 'post',
-        url: `https://neilpickem.loca.lt/login`,
         data: {
             body: userPass,
         }
