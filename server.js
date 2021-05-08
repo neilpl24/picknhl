@@ -4,7 +4,7 @@ let cors = require('cors');
 const profileModel = require("./profileSchema")
 const Express = require("express");
 let app = Express();
-app.use(cors());
+app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
