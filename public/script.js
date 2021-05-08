@@ -42,7 +42,7 @@ async function displaySchedule() {
             const homeTeam = game.gameData.teams.home.name;
             const awayScore = game.liveData.linescore.teams.away.goals;
             const homeScore = game.liveData.linescore.teams.home.goals;
-            const displayDiv = $(`<div class="card text-white bg-secondary mb-3" style="width: 18rem;display:inline-block;"></div>`);
+            const displayDiv = $(`<div class="card text-white bg-secondary mb-3" style="width: 18rem;display:inline-block;float:left;margin: 10px 10px 10px 10px;"></div>`);
             displayDiv.append($(`<div class="card-header">
             ︎ </div>`));
             displayDiv.append($(`<img src="/logos/${homeTeam}1.png" class="card-img-top" width="30px" alt="NHL">`));
