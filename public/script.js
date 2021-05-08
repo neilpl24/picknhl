@@ -81,10 +81,10 @@ function displayPicks(id, home, away) {
     const container = $(`<div class="container" id="tempCon"></div>`);
     const form1 = $(`<div class="form-check"></div>`);
     form1.append($(` <input class="form-check-input" type="radio" name="form" id="${away}">`));
-    form1.append($(` <label class="form-check-label" for="away"><img src="/logos/${away}.png" width="30px" alt="NHL">${away}</label>`));
+    form1.append($(` <label class="form-check-label" for="away"><img src="/logos/${away}.png" width="50px" alt="NHL">${away}</label>`));
     const form2 = $(`<div class="form-check"></div>`);
     form2.append($(` <input class="form-check-input" type="radio" name="form" id="${home}">`));
-    form2.append($(` <label class="form-check-label" for="home"><img src="/logos/${home}.png" width="30px" alt="NHL">${home}</label>`));
+    form2.append($(` <label class="form-check-label" for="home"><img src="/logos/${home}.png" width="50px" alt="NHL">${home}</label>`));
     container.append(form1);
     container.append(form2);
     container.append(`<button class="btn btn-success" onclick="sendPicks()">Send Picks</button>`);
