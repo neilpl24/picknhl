@@ -4,10 +4,12 @@ let cors = require('cors');
 const profileModel = require("./profileSchema")
 const Express = require("express");
 let app = Express();
+const ngrok = require('ngrok');
 app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
+
 
 app.listen(80, () => {
     try {
@@ -21,6 +23,7 @@ app.listen(80, () => {
         console.log(error);
     }
 });
+
 
     app.post('/pick', async (request, response) => {
         const updateProfile = await profileModel.findOneAndUpdate({
