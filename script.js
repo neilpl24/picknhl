@@ -135,8 +135,6 @@ async function login() {
      const result = await axios({
         method: 'post',
         url: `https://neilpickem.loca.lt/login`,
-        credentials: 'include',
-        mode: "no-cors",
         data: {
             body: userPass,
         }
