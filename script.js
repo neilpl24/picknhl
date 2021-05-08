@@ -52,7 +52,7 @@ async function displaySchedule() {
             cardDiv.append(display);
             if(game.gameData.status.abstractGameState == 'Final') {
                 cardDiv.append($(`<a href="https://www.nhl.com/tv/${game.gamePk}" class="btn btn-danger">Final</a>`));
-            } else if(game.liveData.linescore.currentPeriodTimeRemaining != "Final" && game.liveData.linescore >= 1) {
+            } else if(game.liveData.linescore.currentPeriodTimeRemaining != "Final" && game.liveData.linescore.currentPeriod >= 1) {
                 cardDiv.append($(`<a href="www.nhl66.ir" class="btn btn-successs">Watch the game</a>`));
             } else if(picks.includes(homeTeam) || picks.includes(awayTeam)) {
                 cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-success">Pick Made</a>`));
