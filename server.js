@@ -4,8 +4,6 @@ let cors = require('cors');
 const profileModel = require("./profileSchema")
 const Express = require("express");
 let app = Express();
-const ngrok = require('ngrok');
-app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
@@ -25,7 +23,7 @@ app.listen(80, () => {
         console.log(error);
     }
 });
-
+app.options('*', cors());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
