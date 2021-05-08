@@ -77,12 +77,12 @@ app.listen(4000, () => {
     app.post('/decide', async(request, response) => {
         let profiles = await profileModel.find();
         for(let i=0; i<profiles.length; i++) {
-            const picks = profile[i].picks;
-            const winsArray = profile[i].picks.filter(game => request.body.body.winners.includes(game));
+            const picks = profiles[i].picks;
+            const winsArray = profiles[i].picks.filter(game => request.body.body.includes(game));
             const wins = winsArray.length;
             const loss = picks.length - wins;
             await profileModel.findOneAndUpdate({
-                username: profile[i].username,
+                username: profiles[i].username,
             },
             {
                 $inc: {

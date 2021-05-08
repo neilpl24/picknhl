@@ -153,13 +153,16 @@ async function signup() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
     const userPass = {name: username, pass: password};
-    const result = await axios({
+    try {const result = await axios({
         method: 'post',
         url: `http://localhost:4000/signup`,
         data: {
             body: userPass,
         }
 });
+    } catch(err) {
+        console.log(err);
+    }
     if(result.data === true) {
         $('#signer').append(`<p>Account succesfully created. Redirecting you to the main site...</p>`);
         sessionStorage.setItem('loggedIn', true);
