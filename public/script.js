@@ -32,10 +32,8 @@ async function displaySchedule() {
         let finished = true;
         const wins = result.data.wins;
         const losses = result.data.losses;
-        if(sessionStorage.getItem('nav') == null) {
-            $('#nav').append($(`<li class="nav-item"><a style="color:white;"class="nav-link">Welcome ${webUser}. Your record is ${wins} wins and ${losses} losses.</a></li>`));
-            sessionStorage.setItem('nav', 'random');
-        }
+        $(`#navuser`).remove();
+        $('#nav').append($(`<li id="navuser" class="nav-item"><a style="color:white;"class="nav-link">Welcome ${webUser}. Your record is ${wins} wins and ${losses} losses.</a></li>`));
             liveFeed.forEach((game) => {
             if(game.gameData.status.abstractGameState != "Final") {
                 finished = false;
@@ -52,9 +50,9 @@ async function displaySchedule() {
             const display = $(`<p class="card-text"><img src="/logos/${awayTeam}.png" width="20px" alt="NHL">${awayTeam}: ${awayScore} <br> <img src="/logos/${homeTeam}.png" width="20px" alt="NHL">${homeTeam}: ${homeScore}</p>`);
             cardDiv.append(display);
             if(game.gameData.status.abstractGameState == 'Final') {
-                cardDiv.append($(`<a href="https://www.nhl.com/tv/${game.gamePk}" class="btn btn-danger">Final</a>`));
+                cardDiv.append($(`<a href="https://www.nhl.com/tv/${game.gamePk}" target="_blank" class="btn btn-danger">Final</a>`));
             } else if(game.liveData.linescore.currentPeriodTimeRemaining != "Final" && game.liveData.linescore.currentPeriod >= 1) {
-                cardDiv.append($(`<a href="https://nhl66.ir" class="btn btn-success">Watch the game</a>`));
+                cardDiv.append($(`<a href="https://nhl66.ir" target="_blank" class="btn btn-success">Watch the game</a>`));
             } else if(picks.includes(homeTeam) || picks.includes(awayTeam)) {
                 cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-success">Pick Made</a>`));
             } else {
