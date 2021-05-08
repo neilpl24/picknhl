@@ -25,56 +25,56 @@ async function displaySchedule() {
                 body: webUser,
             }
         });
+        const picks = result.data.picks;
+        const gameFeed = $('.gameFeed');
+        gameFeed.children().remove();
+        let finished = true;
+        const wins = result.data.wins;
+        const losses = result.data.losses;
+        if(sessionStorage.getItem('nav') == null) {
+            $('#nav').append($(`<li class="nav-item"><a style="color:white;"class="nav-link">Welcome ${webUser}. Your record is ${wins} wins and ${losses} losses.</a></li>`));
+            sessionStorage.setItem('nav', 'random');
+        }
+            liveFeed.forEach((game) => {
+            if(game.gameData.status.abstractGameState != "Final") {
+                finished = false;
+            }
+            const awayTeam = game.gameData.teams.away.name;
+            const homeTeam = game.gameData.teams.home.name;
+            const awayScore = game.liveData.linescore.teams.away.goals;
+            const homeScore = game.liveData.linescore.teams.home.goals;
+            const displayDiv = $(`<div class="card text-white bg-success mb-3" style="width: 18rem;float:left;margin: 10px 10px 10px 10px;"></div>`);
+            displayDiv.append($(`<div class="card-header">
+            ︎ </div>`));
+            displayDiv.append($(`<img src="nhl.jpg" class="card-img-top" width="30px" alt="NHL">`));
+            const cardDiv = $(`<div class="card-body">`);
+            const display = $(`<p class="card-text"><img src="/logos/${awayTeam}.png" width="20px" alt="NHL">${awayTeam}: ${awayScore} <br> <img src="/logos/${homeTeam}.png" width="20px" alt="NHL">${homeTeam}: ${homeScore}</p>`);
+            cardDiv.append(display);
+            if(game.gameData.status.abstractGameState == 'Final') {
+                cardDiv.append($(`<a href="https://www.nhl.com/tv/${game.gamePk}" class="btn btn-danger">Final</a>`));
+            } else if(game.liveData.linescore.currentPeriodTimeRemaining != "Final" && game.liveData.linescore >= 1) {
+                cardDiv.append($(`<a href="www.nhl66.ir" class="btn btn-successs">Watch the game</a>`));
+            } else if(picks.includes(homeTeam) || picks.includes(awayTeam)) {
+                cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-success">Pick Made</a>`));
+            } else {
+                cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-primary" onclick="displayPicks(${game.gamePk}, '${homeTeam}', '${awayTeam}')">Place your pick</a>`));
+            }
+            displayDiv.append(cardDiv);
+            gameFeed.append(displayDiv);
+        });
+            if(finished && picks.length != 0) {
+                let winners = liveFeed.map(game => {
+                    const awayTeam = game.gameData.teams.away.name;
+                    const homeTeam = game.gameData.teams.home.name;
+                    const awayScore = game.liveData.linescore.teams.away.goals;
+                    const homeScore = game.liveData.linescore.teams.home.goals;
+                    return homeScore > awayScore ? homeTeam : awayTeam;
+                });
+                updateProfiles(winners);
+            }
     } else {
         return;
     }
-    const picks = result.data.picks;
-    const gameFeed = $('.gameFeed');
-    gameFeed.children().remove();
-    let finished = true;
-    const wins = result.data.wins;
-    const losses = result.data.losses;
-    if(sessionStorage.getItem('nav') == null) {
-        $('#nav').append($(`<li class="nav-item"><a style="color:white;"class="nav-link">Welcome ${webUser}. Your record is ${wins} wins and ${losses} losses.</a></li>`));
-        sessionStorage.setItem('nav', 'random');
-    }
-        liveFeed.forEach((game) => {
-        if(game.gameData.status.abstractGameState != "Final") {
-            finished = false;
-        }
-        const awayTeam = game.gameData.teams.away.name;
-        const homeTeam = game.gameData.teams.home.name;
-        const awayScore = game.liveData.linescore.teams.away.goals;
-        const homeScore = game.liveData.linescore.teams.home.goals;
-        const displayDiv = $(`<div class="card text-white bg-success mb-3" style="width: 18rem;float:left;margin: 10px 10px 10px 10px;"></div>`);
-        displayDiv.append($(`<div class="card-header">
-        ︎ </div>`));
-        displayDiv.append($(`<img src="nhl.jpg" class="card-img-top" width="30px" alt="NHL">`));
-        const cardDiv = $(`<div class="card-body">`);
-        const display = $(`<p class="card-text"><img src="/logos/${awayTeam}.png" width="20px" alt="NHL">${awayTeam}: ${awayScore} <br> <img src="/logos/${homeTeam}.png" width="20px" alt="NHL">${homeTeam}: ${homeScore}</p>`);
-        cardDiv.append(display);
-        if(game.gameData.status.abstractGameState == 'Final') {
-            cardDiv.append($(`<a href="https://www.nhl.com/tv/${game.gamePk}" class="btn btn-danger">Final</a>`));
-        } else if(game.liveData.linescore.currentPeriodTimeRemaining != "Final" && game.liveData.linescore >= 1) {
-            cardDiv.append($(`<a href="www.nhl66.ir" class="btn btn-successs">Watch the game</a>`));
-        } else if(picks.includes(homeTeam) || picks.includes(awayTeam)) {
-            cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-success">Pick Made</a>`));
-        } else {
-            cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-primary" onclick="displayPicks(${game.gamePk}, '${homeTeam}', '${awayTeam}')">Place your pick</a>`));
-        }
-        displayDiv.append(cardDiv);
-        gameFeed.append(displayDiv);
-    });
-        if(finished && picks.length != 0) {
-            let winners = liveFeed.map(game => {
-                const awayTeam = game.gameData.teams.away.name;
-                const homeTeam = game.gameData.teams.home.name;
-                const awayScore = game.liveData.linescore.teams.away.goals;
-                const homeScore = game.liveData.linescore.teams.home.goals;
-                return homeScore > awayScore ? homeTeam : awayTeam;
-            });
-            updateProfiles(winners);
-        }
 }
 
 function displayPicks(id, home, away) {
