@@ -11,8 +11,8 @@ const mongoose = require('mongoose');
 app.get('/', (req, res) => {
     res.send('Hello World!');
   });
-app.set('port', 4000);
-app.listen(4000, () => {
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
     try {
         mongoose.connect(process.env.SRV, {
             useNewUrlParser: true,
