@@ -1,4 +1,3 @@
-
 let liveFeed = [];
 let loggedIn = sessionStorage.getItem("loggedIn");
 let webUser = sessionStorage.getItem('username');
