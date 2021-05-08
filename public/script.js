@@ -47,7 +47,7 @@ async function displaySchedule() {
             const displayDiv = $(`<div class="card text-white bg-success mb-3" style="width: 18rem;float:left;margin: 10px 10px 10px 10px;"></div>`);
             displayDiv.append($(`<div class="card-header">
             ︎ </div>`));
-            displayDiv.append($(`<img src="nhl.jpg" class="card-img-top" width="30px" alt="NHL">`));
+            displayDiv.append($(`<img src="nhl.png" class="card-img-top" width="30px" alt="NHL">`));
             const cardDiv = $(`<div class="card-body">`);
             const display = $(`<p class="card-text"><img src="/logos/${awayTeam}.png" width="20px" alt="NHL">${awayTeam}: ${awayScore} <br> <img src="/logos/${homeTeam}.png" width="20px" alt="NHL">${homeTeam}: ${homeScore}</p>`);
             cardDiv.append(display);
@@ -156,7 +156,7 @@ async function signup() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
     const userPass = {name: username, pass: password};
-    try {const result = await axios({
+    const result = await axios({
         method: 'post',
         url: `/signup`,
         credentials: 'include',
@@ -164,9 +164,6 @@ async function signup() {
             body: userPass,
         }
 });
-    } catch(err) {
-        console.log(err);
-    }
     if(result.data === true) {
         $('#signer').append(`<p>Account succesfully created. Redirecting you to the main site...</p>`);
         sessionStorage.setItem('loggedIn', true);
