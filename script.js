@@ -20,7 +20,7 @@ async function displaySchedule() {
     if(!(window.location.href.includes('login.html') || window.location.href.includes('signup.html'))) {
         const result = await axios({
             method: 'post',
-            url: `https://fast-reef-42613.herokuapp.com/http://localhost:80/getpicks`,
+            url: `http://localhost:80/getpicks`,
             data: {
                 body: webUser,
             }
