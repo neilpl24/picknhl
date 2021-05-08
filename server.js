@@ -1,16 +1,22 @@
 require('dotenv').config();
 let bodyParser = require('body-parser')
-let cors = require('cors');
 const profileModel = require("./profileSchema")
 const Express = require("express");
 let app = Express();
+let cors = require('cors')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
 app.get('/', (req, res) => {
     res.send('Hello World!');
   });
-
+  app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:80');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 app.listen(80, () => {
     try {
         mongoose.connect(process.env.SRV, {
@@ -23,15 +29,6 @@ app.listen(80, () => {
         console.log(error);
     }
 });
-app.options('*', cors());
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-
-
     app.post('/pick', async (request, response) => {
         const updateProfile = await profileModel.findOneAndUpdate({
             username: request.body.body.name

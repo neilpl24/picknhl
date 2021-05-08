@@ -97,7 +97,7 @@ function displayPicks(id, home, away) {
 async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
-        url: `https://nhlpickem.loca.lt/decide`,
+        url: `http://localhost:80/decide`,
         data: {
             body: winners,
         }
@@ -117,7 +117,7 @@ async function sendPicks() {
     } else {
         const result = await axios({
             method: 'post',
-            url: `https://nhlpickem.loca.lt/pick`,
+            url: `http://localhost:80/pick`,
             data: {
                 body: {name: webUser, pick: team},
             }
@@ -131,7 +131,7 @@ async function login() {
     const userPass = {name: username, pass: password};
      const result = await axios({
         method: 'post',
-        url: `https://nhlpickem.loca.lt/login`,
+        url: `http://localhost:80/login`,
         data: {
             body: userPass,
         }
@@ -155,7 +155,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `https://nhlpickem.loca.lt/signup`,
+        url: `http://localhost:80/signup`,
         data: {
             body: userPass,
         }
