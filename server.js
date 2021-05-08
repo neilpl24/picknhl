@@ -9,7 +9,9 @@ app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
-
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+  });
 
 app.listen(80, () => {
     try {

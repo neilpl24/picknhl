@@ -20,7 +20,7 @@ async function displaySchedule() {
     if(!(window.location.href.includes('login.html') || window.location.href.includes('signup.html'))) {
         const result = await axios({
             method: 'post',
-            url: `http://localhost:80/getpicks`,
+            url: `https://nhlpickem.loca.lt/getpicks`,
             data: {
                 body: webUser,
             }
@@ -53,7 +53,7 @@ async function displaySchedule() {
             if(game.gameData.status.abstractGameState == 'Final') {
                 cardDiv.append($(`<a href="https://www.nhl.com/tv/${game.gamePk}" class="btn btn-danger">Final</a>`));
             } else if(game.liveData.linescore.currentPeriodTimeRemaining != "Final" && game.liveData.linescore.currentPeriod >= 1) {
-                cardDiv.append($(`<a href="www.nhl66.ir" class="btn btn-successs">Watch the game</a>`));
+                cardDiv.append($(`<a href="https://www.nhl66.ir" class="btn btn-success">Watch the game</a>`));
             } else if(picks.includes(homeTeam) || picks.includes(awayTeam)) {
                 cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-success">Pick Made</a>`));
             } else {
@@ -97,7 +97,7 @@ function displayPicks(id, home, away) {
 async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
-        url: `http://localhost:80/decide`,
+        url: `https://nhlpickem.loca.lt/decide`,
         data: {
             body: winners,
         }
@@ -117,7 +117,7 @@ async function sendPicks() {
     } else {
         const result = await axios({
             method: 'post',
-            url: `http://localhost:80/pick`,
+            url: `https://nhlpickem.loca.lt/pick`,
             data: {
                 body: {name: webUser, pick: team},
             }
@@ -131,7 +131,7 @@ async function login() {
     const userPass = {name: username, pass: password};
      const result = await axios({
         method: 'post',
-        url: `http://localhost:80/login`,
+        url: `https://nhlpickem.loca.lt/login`,
         data: {
             body: userPass,
         }
@@ -155,7 +155,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
-        url: `http://localhost:80/signup`,
+        url: `https://nhlpickem.loca.lt/signup`,
         data: {
             body: userPass,
         }
