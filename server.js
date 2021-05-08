@@ -7,6 +7,7 @@ let cors = require('cors')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
+app.use(cors()); 
 app.get('/', (req, res) => {
     res.send('Hello World!');
   });
@@ -60,7 +61,7 @@ app.listen(4000, () => {
         }
     });
 
-    app.post('/login', async (request, response) => {
+    app.get('/login', async (request, response) => {
         let profileData = await profileModel.findOne({username: request.body.body.name});
         if(profileData == undefined) {
             response.send('There is no account under this username.');
@@ -71,7 +72,7 @@ app.listen(4000, () => {
                 response.send(false);
             }
         }
-    })
+    });
 
     app.post('/decide', async(request, response) => {
         let profiles = await profileModel.find();

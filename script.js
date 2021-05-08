@@ -130,7 +130,7 @@ async function login() {
     const password = $(`#password`).val();
     const userPass = {name: username, pass: password};
      const result = await axios({
-        method: 'post',
+        method: 'get',
         url: `http://localhost:4000/login`,
         data: {
             body: userPass,
