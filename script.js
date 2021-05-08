@@ -20,7 +20,7 @@ async function displaySchedule() {
     if(!(window.location.href.includes('login.html') || window.location.href.includes('signup.html'))) {
         const result = await axios({
             method: 'post',
-            url: `http://localhost:4000/getpicks`,
+            url: `https://neilpickem.loca.lt/getpicks`,
             credentials: 'include',
             data: {
                 body: webUser,
@@ -98,7 +98,7 @@ function displayPicks(id, home, away) {
 async function updateProfiles(winners) {
     const result = await axios({
         method: 'post',
-        url: `http://localhost:4000/decide`,
+        url: `https://neilpickem.loca.lt/decide`,
         credentials: 'include',
         data: {
             body: winners,
@@ -119,7 +119,7 @@ async function sendPicks() {
     } else {
         const result = await axios({
             method: 'post',
-            url: `http://localhost:4000/pick`,
+            url: `https://neilpickem.loca.lt/pick`,
             credentials: 'include',
             data: {
                 body: {name: webUser, pick: team},
@@ -159,7 +159,7 @@ async function signup() {
     const userPass = {name: username, pass: password};
     try {const result = await axios({
         method: 'post',
-        url: `http://localhost:4000/signup`,
+        url: `https://neilpickem.loca.lt/signup`,
         credentials: 'include',
         data: {
             body: userPass,

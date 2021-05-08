@@ -4,20 +4,15 @@ const profileModel = require("./profileSchema")
 const Express = require("express");
 let app = Express();
 let cors = require('cors');
-app.use(
-    cors({
-      origin: ['https://neilpickem.loca.lt','https://neilpickem.netlify.app'],
-      credentials: true,
-    })
-  );
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 const mongoose = require('mongoose');
 app.get('/', (req, res) => {
     res.send('Hello World!');
   });
   app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", 'https://neilpickem.netlify.app');
+    res.header("Access-Control-Allow-Origin", "*");
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
