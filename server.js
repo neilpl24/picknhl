@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
 
-app.listen(5000, '0.0.0.0', () => {
+app.listen(80, () => {
     try {
         mongoose.connect(process.env.SRV, {
             useNewUrlParser: true,
@@ -30,7 +30,7 @@ app.listen(5000, '0.0.0.0', () => {
             $push: {
                 picks: request.body.body.pick
             },
-        })
+        });
         response.send(updateProfile);
     });
 
