@@ -129,6 +129,13 @@ async function sendPicks() {
 async function login() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
+    if(password.length < 3) {
+        $('#logger').append(`<p>Password length too short. Must be at least 4 characters.</p>`);
+        return;
+    } else if (username.length < 4) {
+        $('#logger').append(`<p>Username must be at least 5 characters.</p>`);
+        return;
+    }
     const userPass = {name: username, pass: password};
      const result = await axios({
         method: 'post',
@@ -153,6 +160,13 @@ async function login() {
 async function signup() {
     const username = $(`#username`).val();
     const password = $(`#password`).val();
+    if(password.length < 3) {
+        $('#logger').append(`<p>Password length too short. Must be at least 4 characters.</p>`);
+        return;
+    } else if (username.length < 4) {
+        $('#logger').append(`<p>Username must be at least 5 characters.</p>`);
+        return;
+    }
     const userPass = {name: username, pass: password};
     const result = await axios({
         method: 'post',
