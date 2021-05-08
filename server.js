@@ -25,12 +25,6 @@ app.listen(port, () => {
         console.log(error);
     }
 });
-app.options('/pick', function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader("Access-Control-Allow-Headers", "*");
-    res.end();
-  });
     app.post('/pick', async (request, response) => {
         const updateProfile = await profileModel.findOneAndUpdate({
             username: request.body.body.name
@@ -43,23 +37,10 @@ app.options('/pick', function (req, res) {
         response.send(updateProfile);
     });
 
-    app.options('/getpicks', function (req, res) {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.setHeader("Access-Control-Allow-Headers", "*");
-        res.end();
-      });
-
     app.post('/getpicks', async(request, response) => {
         let profileData = await profileModel.findOne({username: request.body.body});
         response.send({picks: profileData.picks, wins: profileData.wins, losses: profileData.losses});
     });
-    app.options('/signup', function (req, res) {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.setHeader("Access-Control-Allow-Headers", "*");
-        res.end();
-      });
     app.post('/signup', async (request, response) => {
         let profileData = await profileModel.findOne({username: request.body.body.name});
         let profile;
@@ -73,12 +54,6 @@ app.options('/pick', function (req, res) {
             response.send(false);
         }
     });
-    app.options('/login', function (req, res) {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.setHeader("Access-Control-Allow-Headers", "*");
-        res.end();
-      });
     app.post('/login', async (request, response) => {
         let profileData = await profileModel.findOne({username: request.body.body.name});
         if(profileData == undefined) {
@@ -91,13 +66,6 @@ app.options('/pick', function (req, res) {
             }
         }
     });
-
-    app.options('/decide', function (req, res) {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.setHeader("Access-Control-Allow-Headers", "*");
-        res.end();
-      });
 
     app.post('/decide', async(request, response) => {
         let profiles = await profileModel.find();
