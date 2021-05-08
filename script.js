@@ -53,7 +53,7 @@ async function displaySchedule() {
             if(game.gameData.status.abstractGameState == 'Final') {
                 cardDiv.append($(`<a href="https://www.nhl.com/tv/${game.gamePk}" class="btn btn-danger">Final</a>`));
             } else if(game.liveData.linescore.currentPeriodTimeRemaining != "Final" && game.liveData.linescore.currentPeriod >= 1) {
-                cardDiv.append($(`<a href="https://www.nhl66.ir" class="btn btn-success">Watch the game</a>`));
+                cardDiv.append($(`<a href="https://nhl66.ir" class="btn btn-success">Watch the game</a>`));
             } else if(picks.includes(homeTeam) || picks.includes(awayTeam)) {
                 cardDiv.append($(`<a href="#" id=${game.gamePk} class="btn btn-success">Pick Made</a>`));
             } else {
@@ -106,7 +106,7 @@ async function updateProfiles(winners) {
 }
 
 function logout() {
-    sessionStorage.setItem(null);
+    sessionStorage.setItem('loggedIn', null);
     window.location.href = 'login.html';
 }
 
