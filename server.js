@@ -61,7 +61,7 @@ app.listen(4000, () => {
         }
     });
 
-    app.get('/login', async (request, response) => {
+    app.post('/login', async (request, response) => {
         let profileData = await profileModel.findOne({username: request.body.body.name});
         if(profileData == undefined) {
             response.send('There is no account under this username.');
